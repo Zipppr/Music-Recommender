@@ -29,7 +29,7 @@ app.get('/get-top-artists', async (req, res) => {
         recommendations: [
           {
             name: 'The Smashing Pumpkins',
-            link: 'https://open.spotify.com/artist/0feDAfIFpP6HANKOrjNQoq',
+            link: 'https://open.spotify.com/artist/40Yq4vzPs9VNUrIBG5Jr2i',
             imageUrl: 'https://www.bankplusamphitheater.com/assets/img/Smashing-Pumpkins-d7449afcb9.jpg'
           },
           {
@@ -39,7 +39,7 @@ app.get('/get-top-artists', async (req, res) => {
           },
           {
             name: 'The Cure',
-            link: 'https://open.spotify.com/artist/3yY2gUcIsjMr8hjo51PoJ8',
+            link: 'https://open.spotify.com/artist/7bu3H8JO7d0UbMoVzbo70s',
             imageUrl: 'https://i.iheart.com/v3/catalog/artist/32153?ops=fit(720%2C720)'
           }
         ]
@@ -53,12 +53,12 @@ app.get('/get-top-artists', async (req, res) => {
         recommendations: [
           {
             name: 'Jeff Buckley',
-            link: 'https://open.spotify.com/artist/3xJ0RY7c4EKOcSiyQ9MRTy',
+            link: 'https://open.spotify.com/artist/3nnQpaTvKb5jCQabZefACI',
             imageUrl: 'https://media.npr.org/assets/img/2016/01/12/jeff-buckley_-c-david-gahr_wide-551d823982a692c25afdc0f23963ce53556efed6.jpeg'
           },
           {
             name: 'Alex G',
-            link: 'https://open.spotify.com/artist/4MXUO7sVCaFgFjoTI5ox5c',
+            link: 'https://open.spotify.com/artist/6lcwlkAjBPSKnFBZjjZFJs',
             imageUrl: 'https://thefader-res.cloudinary.com/private_images/w_1440,c_limit,f_auto,q_auto:best/DSC03165_mymmbu/alex-g-is-trying-to-tell-you-something.jpg'
           },
           {
@@ -82,7 +82,7 @@ app.get('/get-top-artists', async (req, res) => {
           },
           {
             name: 'Pusha T',
-            link: 'https://open.spotify.com/artist/1Ffb6ejR6Fe5IamqA5oRUF',
+            link: 'https://open.spotify.com/artist/0ONHkAv9pCAFxb0zJwDNTy',
             imageUrl: 'https://i.scdn.co/image/ab6761610000e5ebc5b88a3924d8318f25f20594'
           },
           {
