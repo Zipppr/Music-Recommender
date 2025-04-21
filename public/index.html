@@ -3,68 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Music Recommender</title>
+  <title>The EchoLoop</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:,">
 </head>
 <body>
   <header>
-    <h1>🎧 Music Recommender</h1>
+    <h1>The EchoLoop</h1>
   </header>
   <main>
+    <section>
+      <button id="loginBtn">Log in with Spotify</button>
+    </section>
     <section id="artist-section">
-      <h2>🔥 Top 3 Artists</h2>
+      <h2>Some Of Your Top Artists</h2>
       <div id="artist-container" class="card-container"></div>
     </section>
+
+    <div class="link-to-similar">
+      <a href="/similar" class="similar-link">Some similar artists →</a>
+    </div>
+
     <p class="disclaimer">
       Disclaimer: All artist images, names, and data are sourced from Spotify and used here for educational/demonstration purposes only. All rights belong to their respective owners.
     </p>
   </main>
   <footer>
-    <p>&copy; 2025 Music Recommender | Built with 💜</p>
+    <p>&copy; 2025 The EchoLoop | Built With VS Code</p>
   </footer>
+
   <script>
-    async function fetchTopArtists() {
-      try {
-        const response = await fetch('/get-top-artists');
-        const artists = await response.json();
-        const container = document.getElementById('artist-container');
-        container.innerHTML = '';
+    const loginBtn = document.getElementById('loginBtn');
 
-        artists.forEach((artist) => {
-          const card = document.createElement('div');
-          card.className = 'card';
+    loginBtn.addEventListener('click', () => {
+      window.location.href = '/login';
+    });
 
-          let recHTML = '';
-          if (artist.recommendations && artist.recommendations.length) {
-            recHTML = '<div class="recommendations"><p>Since you like ' + artist.name + ', check out:</p>';
-            artist.recommendations.forEach(rec => {
-              recHTML += `
-                <div class="rec-artist">
-                  <img src="${rec.imageUrl}" alt="${rec.name}" />
-                  <a href="${rec.link}" target="_blank">${rec.name}</a>
-                </div>
-              `;
-            });
-            recHTML += '</div>';
-          }
-
-          card.innerHTML = `
-            <img src="${artist.imageUrl}" alt="${artist.name}">
-            <h3>${artist.name}</h3>
-            <p>Monthly Listeners: ${artist.monthlyListeners}</p>
-            <a href="${artist.spotifyLink}" target="_blank">Listen on Spotify</a>
-            ${recHTML}
-          `;
-
-          container.appendChild(card);
-        });
-      } catch (error) {
-        console.error('Error fetching artists:', error);
-      }
+    async function fetchTopArtists(token) {
+      const response = await fetch(`/top-artists?access_token=${token}`);
+      const data = await response.json();
+      displayArtists(data.items);
     }
 
-    fetchTopArtists();
+    function displayArtists(artists) {
+      const container = document.getElementById('artist-container');
+      container.innerHTML = '';
+
+      artists.forEach((artist) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+          <img src="${artist.images[0]?.url || ''}" alt="${artist.name}">
+          <h3>${artist.name}</h3>
+          <p>Genres: ${artist.genres.slice(0, 2).join(', ')}</p>
+          <a href="${artist.external_urls.spotify}" target="_blank">View on Spotify</a>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessToken = urlParams.get('access_token');
+    if (accessToken) {
+      loginBtn.style.display = 'none';
+      fetchTopArtists(accessToken);
+      window.history.replaceState({}, document.title, '/');
+    }
   </script>
 </body>
 </html>
