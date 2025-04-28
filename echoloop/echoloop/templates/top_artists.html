@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="home-container">
+    <h1>Your Top Artists</h1>
+
+    {% if artists %}
+        <div class="artists-grid">
+            {% for artist in artists %}
+                <div class="artist-card">
+                    {% if artist.image_url %}
+                        <img src="{{ artist.image_url }}" alt="{{ artist.name }}">
+                    {% endif %}
+                    <h2>{{ artist.name }}</h2>
+                    <p>{{ artist.genres }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No top artists available. Please connect your Spotify account.</p>
+    {% endif %}
+
+    <div class="button-group">
+        <a href="{% url 'home' %}" class="btn">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

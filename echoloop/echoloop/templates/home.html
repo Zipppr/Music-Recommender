@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="home-container">
+    <h1>Welcome to The Echoloop</h1>
+    <p>Discover your top artists, explore music, and connect through Spotify.</p>
+
+    <div class="button-group">
+        <a href="{% url 'login' %}" class="btn">Login to EchoLoop</a>
+        <a href="{% url 'spotify_login' %}" class="btn">Login to Spotify</a>
+    </div>
+</div>
+<footer>
+    © 2025 The Echoloop. Built for educational purposes with inspiration from Spotify.
+</footer>
+{% endblock %}
